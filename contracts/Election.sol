@@ -2,6 +2,11 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 contract Election {
+    // Election details
+    string public name;
+    string public description;
+
+    // Struct of candidate
     struct Candidate {
         uint256 id;
         string name;
@@ -14,9 +19,13 @@ contract Election {
 
     uint256 public candidatesCount;
 
-    constructor() public {
-        addCandidate("Candidate 1");
-        addCandidate("Candidate 2");
+    constructor(string[] memory _info, string[] memory _candidates) public {
+        require(_candidates.length > 0, "There should be atleast 1 candidates");
+        name = _info[0];
+        description = _info[1];
+        for (uint256 i = 0; i < _candidates.length; i++) {
+            addCandidate(_candidates[i]);
+        }
     }
 
     function addCandidate(string memory _name) private {
@@ -25,9 +34,12 @@ contract Election {
     }
 
     function vote(uint256 _candidateId) public {
-        require(!voters[msg.sender]);
-        require(_candidateId > 0 && _candidateId <= candidatesCount);
-        
+        require(!voters[msg.sender], "Voter has already voted!");
+        require(
+            _candidateId > 0 && _candidateId <= candidatesCount,
+            "Invalid candidate !!!"
+        );
+
         voters[msg.sender] = true;
         candidates[_candidateId].voteCount++;
     }

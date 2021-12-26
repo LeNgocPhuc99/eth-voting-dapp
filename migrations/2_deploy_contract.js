@@ -1,5 +1,5 @@
-const Election = artifacts.require("Election");
+const MainContract = artifacts.require("MainContract");
 
-module.exports = function (deployer) {
-  deployer.deploy(Election);
+module.exports = function(deployer) {
+  deployer.deploy(MainContract);
 };
