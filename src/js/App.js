@@ -4,7 +4,8 @@ import Election from "../abis/Election.json";
 
 function App() {
   const [account, setAccount] = useState();
-  const [votingContract, setVotingContract] = useState("");
+  const [electionContract, setElectionContract] = useState("");
+  const [candidates, setCandidates] = useState([]);
 
   useEffect(() => {
     const ethEnable = async () => {
@@ -33,7 +34,16 @@ function App() {
           electionData.address
         );
 
-        console.log(electionContract);
+        setElectionContract(electionContract);
+        // load candidates
+        const candidatesCount = await electionContract.methods
+          .candidatesCount()
+          .call();
+        for (let i = 1; i <= candidatesCount; i++) {
+          const candidate = await electionContract.methods.candidates(i).call();
+          console.log(candidate);
+          setCandidates((candidates) => [...candidates, candidate]);
+        }
       } else {
         window.alert("Election contract is not deployed on this network");
       }
