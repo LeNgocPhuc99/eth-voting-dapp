@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Web3 from "web3";
 import Election from "../abis/Election.json";
 
+import Content from "./components/Content";
+
 function App() {
   const [account, setAccount] = useState();
   const [electionContract, setElectionContract] = useState("");
@@ -53,9 +55,10 @@ function App() {
   };
 
   return (
-    <div>
-      <p>Ethereum Voting Dapp</p>
-      <p>Your account: {account}</p>
+    <div className="row">
+      <div className="col-lg-12 text-center">
+        <Content account={account} candidates={candidates} />
+      </div>
     </div>
   );
 }
