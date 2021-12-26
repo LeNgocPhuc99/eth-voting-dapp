@@ -13,7 +13,7 @@ function Table(props) {
       <tbody>
         {props.candidates.map((candidate, key) => {
           return (
-            <tr>
+            <tr key={key}>
               <th>{candidate.id}</th>
               <td>{candidate.name}</td>
               <td>{candidate.voteCount}</td>

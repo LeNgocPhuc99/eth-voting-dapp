@@ -22,8 +22,8 @@ function App() {
       window.web3 = new Web3(window.ethereum);
       // connect to metamask
       let web3 = window.web3;
-      const account = await web3.eth.getAccounts();
-      setAccount(account);
+      const accounts = await web3.eth.getAccounts();
+      setAccount(accounts[0]);
 
       const networkId = await web3.eth.net.getId();
 
@@ -43,7 +43,6 @@ function App() {
           .call();
         for (let i = 1; i <= candidatesCount; i++) {
           const candidate = await electionContract.methods.candidates(i).call();
-          console.log(candidate);
           setCandidates((candidates) => [...candidates, candidate]);
         }
       } else {
@@ -54,10 +53,18 @@ function App() {
     }
   };
 
+  const castVote = (_id) => {
+    electionContract.methods.vote(_id).send({ from: account });
+  };
+
   return (
     <div className="row">
       <div className="col-lg-12 text-center">
-        <Content account={account} candidates={candidates} />
+        <Content
+          account={account}
+          candidates={candidates}
+          castVote={castVote}
+        />
       </div>
     </div>
   );
