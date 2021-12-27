@@ -20,12 +20,14 @@ contract Election {
     uint256 public candidatesCount;
 
     constructor(string[] memory _info, string[] memory _candidates) public {
-        require(_candidates.length > 0, "There should be atleast 1 candidates");
-        name = _info[0];
-        description = _info[1];
-        for (uint256 i = 0; i < _candidates.length; i++) {
-            addCandidate(_candidates[i]);
-        }
+        // require(_candidates.length > 0, "There should be atleast 1 candidates");
+        // name = _info[0];
+        // description = _info[1];
+        // for (uint256 i = 0; i < _candidates.length; i++) {
+        //     addCandidate(_candidates[i]);
+        // }
+        addCandidate("Candidate 1");
+        addCandidate("Candidate 2");
     }
 
     function addCandidate(string memory _name) private {

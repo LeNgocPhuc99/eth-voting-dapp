@@ -41,10 +41,10 @@ module.exports = {
       Buffer: ["buffer", "Buffer"],
     }),
     new webpack.ProvidePlugin({
-      "React": "react",
-   }),
-   new webpack.ProvidePlugin({
-    process: 'process/browser',
-}),
+      React: "react",
+    }),
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+    }),
   ],
 };
