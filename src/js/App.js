@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 import Web3 from "web3";
-import Election from "../abis/Election.json";
 import MainContract from "../abis/MainContract.json";
-
-import Content from "./components/Content";
-import CreateElection from "./components/CreateElection";
+import VoteModal from "./components/VoteModal"; 
 
 function App() {
   const [account, setAccount] = useState();
@@ -49,7 +46,8 @@ function App() {
 
   return (
     <div>
-      <CreateElection account={account} mainContract={mainContract} />
+      <VoteModal />
+      {/* <CreateElection account={account} mainContract={mainContract} /> */}
     </div>
   );
 }
