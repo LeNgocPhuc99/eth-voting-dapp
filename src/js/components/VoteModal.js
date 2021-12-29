@@ -11,10 +11,8 @@ function VoteModal(props) {
     vote(candidateId);
   };
 
-  const candidates = ["Candidate 1", "Candidate 2"];
-
-  const vote = async (id) => {
-    console.log(id);
+  const vote = async (_id) => {
+    await props.election.methods.vote(_id).send({from:props.account});
   };
 
   const onFormChange = (e) => {
@@ -32,10 +30,10 @@ function VoteModal(props) {
           <Modal.Title>Choose candidate from below</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {candidates.map((candidate, key) => {
+          {props.candidates.map((candidate, key) => {
             return (
               <Form.Check
-                label={candidate}
+                label={candidate.name}
                 value={key}
                 key={key}
                 onChange={onFormChange}

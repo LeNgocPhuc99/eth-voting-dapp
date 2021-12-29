@@ -7,18 +7,22 @@ function CreateElection(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let tmpCandidates = [];
+    let eCandidates = [];
     const candidateObj = document.getElementsByName("candidate").values();
     let i = 0;
     for (let val of candidateObj) {
-      tmpCandidates[i] = val.value;
+      eCandidates[i] = val.value;
       i++;
     }
 
-    setCandidates((candidates) => [...candidates, ...tmpCandidates]);
+    setCandidates((candidates) => [...candidates, ...eCandidates]);
+
+    console.log(eCandidates);
+    console.log(electionName);
+    console.log(description);
 
     props.mainContract.methods
-      .createElection([electionName, description], candidates)
+      .createElection([electionName, description], eCandidates)
       .send({ from: props.account });
   };
 
