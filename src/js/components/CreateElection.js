@@ -21,9 +21,11 @@ function CreateElection(props) {
     console.log(electionName);
     console.log(description);
 
-    props.mainContract.methods
+    await props.mainContract.methods
       .createElection([electionName, description], eCandidates)
       .send({ from: props.account });
+
+    window.location = "./active";
   };
 
   const onChangeElectionName = (e) => {

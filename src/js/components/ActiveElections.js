@@ -56,10 +56,12 @@ function ActiveElections(props) {
           onClick={loadData}
           src="../../public/refresh.png"
         />
-        <img
-          style={{ width: "25px", cursor: "pointer" }}
-          src="../../public/add.png"
-        />
+        <Link to="/createElection">
+          <img
+            style={{ width: "25px", cursor: "pointer" }}
+            src="../../public/add.png"
+          />
+        </Link>
       </div>
 
       <table className="table table-hover table-bordered">
