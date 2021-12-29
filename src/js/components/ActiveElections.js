@@ -43,7 +43,7 @@ function ActiveElections(props) {
       }
 
       electionDetails.candidates = candidates;
-      electionComponents[i] = <Election election={electionDetails} />;
+      electionComponents[i] = <Election key={i} election={electionDetails} />;
     }
     setElections(electionComponents);
   };
