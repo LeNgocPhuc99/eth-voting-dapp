@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Web3 from "web3";
 import MainContract from "../abis/MainContract.json";
 
 import CreateElection from "./components/CreateElection";
 import ActiveElections from "./components/ActiveElections";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [account, setAccount] = useState();
@@ -49,14 +51,15 @@ function App() {
   };
 
   return (
-    <div>
-      {/* <CreateElection account={account} mainContract={mainContract} /> */}
+    <BrowserRouter>
+      <Navbar account={account} />
+      <br />
       <ActiveElections
         web3={web3}
         account={account}
         mainContract={mainContract}
       />
-    </div>
+    </BrowserRouter>
   );
 }
 
