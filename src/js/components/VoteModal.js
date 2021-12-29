@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
+import { Button, Modal, Form, Spinner } from "react-bootstrap";
 
 function VoteModal(props) {
   const [show, setShow] = useState(false);
   const [candidateId, changeId] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -12,7 +13,10 @@ function VoteModal(props) {
   };
 
   const vote = async (_id) => {
-    await props.election.methods.vote(_id).send({from:props.account});
+    setLoading(true);
+    await props.election.methods.vote(_id).send({ from: props.account });
+    setLoading(false);
+    window.location = "./active";
   };
 
   const onFormChange = (e) => {
@@ -42,11 +46,18 @@ function VoteModal(props) {
           })}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
           <Button variant="primary" onClick={handleVote}>
-            Vote
+            {loading ? (
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            ) : (
+              <span>Vote</span>
+            )}
           </Button>
         </Modal.Footer>
       </Modal>

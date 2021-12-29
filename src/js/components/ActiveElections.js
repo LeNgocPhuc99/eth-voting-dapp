@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ElectionContract from "../../abis/Election.json";
 import Election from "./Election";
@@ -6,8 +7,10 @@ import Election from "./Election";
 function ActiveElections(props) {
   // const [loading, setLoading] = useState(false);
   const [elections, setElections] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const loadData = async () => {
+    setLoading(true);
     const electionCount = await props.mainContract.methods.electionId().call();
     // Election contract instance , election info, election component
     let electionComponents = [];
@@ -46,6 +49,7 @@ function ActiveElections(props) {
       electionComponents[i] = <Election key={i} election={electionDetails} />;
     }
     setElections(electionComponents);
+    setLoading(false);
   };
 
   return (
@@ -78,13 +82,7 @@ function ActiveElections(props) {
       </table>
 
       <center>
-        <button
-          style={{ width: 100 }}
-          className="btn btn-primary"
-          onClick={loadData}
-        >
-          Refresh
-        </button>
+        {loading ? <Spinner animation="border" variant="success" /> : <></>}
       </center>
     </div>
   );

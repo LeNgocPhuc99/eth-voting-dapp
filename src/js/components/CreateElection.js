@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { Spinner } from "react-bootstrap";
 
 function CreateElection(props) {
   const [electionName, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [candidates, setCandidates] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,16 +16,11 @@ function CreateElection(props) {
       i++;
     }
 
-    setCandidates((candidates) => [...candidates, ...eCandidates]);
-
-    console.log(eCandidates);
-    console.log(electionName);
-    console.log(description);
-
+    setLoading(true);
     await props.mainContract.methods
       .createElection([electionName, description], eCandidates)
       .send({ from: props.account });
-
+    setLoading(false);
     window.location = "./active";
   };
 
@@ -90,7 +86,17 @@ function CreateElection(props) {
             type="submit"
             style={{ width: 100 }}
           >
-            Submit
+            {loading ? (
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            ) : (
+              <span>Submit</span>
+            )}
           </button>
         </div>
 
