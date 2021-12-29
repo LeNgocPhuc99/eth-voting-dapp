@@ -54,11 +54,34 @@ function App() {
     <BrowserRouter>
       <Navbar account={account} />
       <br />
-      <ActiveElections
-        web3={web3}
-        account={account}
-        mainContract={mainContract}
-      />
+      <Routes>
+      <Route
+          path="/"
+          element={
+            <ActiveElections
+              web3={web3}
+              account={account}
+              mainContract={mainContract}
+            />
+          }
+        />
+        <Route
+          path="/createElection"
+          element={
+            <CreateElection account={account} mainContract={mainContract} />
+          }
+        />
+        <Route
+          path="/active"
+          element={
+            <ActiveElections
+              web3={web3}
+              account={account}
+              mainContract={mainContract}
+            />
+          }
+        />
+      </Routes>
     </BrowserRouter>
   );
 }
