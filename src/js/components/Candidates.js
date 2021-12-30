@@ -3,7 +3,7 @@ import { Table } from "react-bootstrap";
 
 function Candidates(props) {
   return (
-    <Table striped bordered hover variant="dark">
+    <Table striped bordered hover>
       <tbody>
         {props.candidates.map((candidate, key) => {
           return (

@@ -5,7 +5,7 @@ function MyNavbar(props) {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="./active">LNP</Navbar.Brand>
+        <Navbar.Brand href="./">LNP</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link href="./createElection">New Election</Nav.Link>
           <Nav.Link href="./active">Active Election</Nav.Link>

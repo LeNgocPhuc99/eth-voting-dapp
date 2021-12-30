@@ -58,11 +58,7 @@ function App() {
         <Route
           path="/"
           element={
-            <ActiveElections
-              web3={web3}
-              account={account}
-              mainContract={mainContract}
-            />
+            <></>
           }
         />
         <Route
