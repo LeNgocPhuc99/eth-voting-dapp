@@ -5,7 +5,7 @@ import MainContract from "../abis/MainContract.json";
 
 import CreateElection from "./components/CreateElection";
 import ActiveElections from "./components/ActiveElections";
-import Navbar from "./components/Navbar";
+import MyNavbar from "./components/MyNavbar";
 
 function App() {
   const [account, setAccount] = useState();
@@ -52,10 +52,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar account={account} />
+      <MyNavbar account={account} />
       <br />
       <Routes>
-      <Route
+        <Route
           path="/"
           element={
             <ActiveElections

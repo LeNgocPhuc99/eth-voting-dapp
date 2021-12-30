@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Spinner } from "react-bootstrap";
+import { Spinner, Form, Row, Col, Button } from "react-bootstrap";
+
+
 
 function CreateElection(props) {
   const [electionName, setName] = useState("");
@@ -35,73 +37,58 @@ function CreateElection(props) {
   return (
     <div className="container card">
       <h3>Create New Election</h3>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Name</label>
-          <input
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="electionName">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
             type="text"
-            className="form-control"
             placeholder="Enter election name"
             onChange={onChangeElectionName}
             required
           />
-        </div>
+        </Form.Group>
 
-        <div className="form-group">
-          <label>Description</label>
-          <textarea
-            type="text"
-            className="form-control"
+        <Form.Group className="mb-3" controlId="electionDescription">
+          <Form.Label>Description</Form.Label>
+          <Form.Control
+            as="textarea"
             placeholder="Description your Election"
             onChange={onChangeDescription}
             required
           />
-        </div>
+        </Form.Group>
 
-        <div className="form-group">
-          <label>Candidate 1</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Candidate Name"
+        <Form.Group className="mb-3" controlId="candidate1">
+          <Form.Label>Candidate 1</Form.Label>
+          <Form.Control
             name="candidate"
+            placeholder="Candidate Name"
             required
           />
-        </div>
+        </Form.Group>
 
-        <div className="form-group">
-          <label>Candidate 2</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Candidate Name"
+        <Form.Group className="mb-3" controlId="candidate2">
+          <Form.Label>Candidate 2</Form.Label>
+          <Form.Control
             name="candidate"
+            placeholder="Candidate Name"
             required
           />
-        </div>
-
-        <div>
-          <button
-            className="btn btn-success grid-item"
-            type="submit"
-            style={{ width: 100 }}
-          >
-            {loading ? (
-              <Spinner
-                as="span"
-                animation="border"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              />
-            ) : (
-              <span>Submit</span>
-            )}
-          </button>
-        </div>
-
-        <br />
-      </form>
+        </Form.Group>
+        <Button type="submit" variant="success">
+          {loading ? (
+            <Spinner
+              as="span"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+          ) : (
+            <span>Submit</span>
+          )}
+        </Button>
+      </Form>
     </div>
   );
 }

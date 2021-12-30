@@ -1,8 +1,9 @@
 import React from "react";
+import { Table } from "react-bootstrap";
 
 function Candidates(props) {
   return (
-    <table className="table">
+    <Table striped bordered hover variant="dark">
       <tbody>
         {props.candidates.map((candidate, key) => {
           return (
@@ -13,7 +14,7 @@ function Candidates(props) {
           );
         })}
       </tbody>
-    </table>
+    </Table>
   );
 }
 

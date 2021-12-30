@@ -25,7 +25,7 @@ function VoteModal(props) {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="success" onClick={handleShow}>
         Vote
       </Button>
 
@@ -46,7 +46,7 @@ function VoteModal(props) {
           })}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleVote}>
+          <Button variant="success" onClick={handleVote}>
             {loading ? (
               <Spinner
                 as="span"

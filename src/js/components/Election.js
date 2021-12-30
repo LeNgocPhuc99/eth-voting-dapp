@@ -6,7 +6,7 @@ function Election(props) {
   // console.log(props.candidates);
   return (
     <tr>
-      <td>{props.election.electionId}</td>
+      <td style={{ textAlign: "center" }}>{props.election.electionId}</td>
 
       <td>
         {props.election.electionName}
@@ -16,7 +16,7 @@ function Election(props) {
         </font>
         <br />
         <font className="text-muted" size="2">
-          {props.election.electionAddress}
+          <span>Election's address:{props.election.electionAddress} </span>
         </font>
       </td>
 

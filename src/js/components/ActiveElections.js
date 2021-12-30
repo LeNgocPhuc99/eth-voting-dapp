@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Spinner } from "react-bootstrap";
+import { Spinner, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ElectionContract from "../../abis/Election.json";
 import Election from "./Election";
@@ -68,18 +68,18 @@ function ActiveElections(props) {
         </Link>
       </div>
 
-      <table className="table table-hover table-bordered">
+      <Table striped bordered hover variant="dark">
         <thead>
           <tr>
-            <th style={{ width: "120px" }}>Election ID</th>
-            <th>Election Name</th>
+            <th style={{ textAlign: "center" }}>Election ID</th>
+            <th style={{ textAlign: "center" }}>Election Name</th>
             <th style={{ textAlign: "center" }}>Candidates</th>
             <th style={{ textAlign: "center" }}>Vote</th>
           </tr>
         </thead>
 
         <tbody>{elections}</tbody>
-      </table>
+      </Table>
 
       <center>
         {loading ? <Spinner animation="border" variant="success" /> : <></>}
