@@ -11,5 +11,5 @@ app.get("*", (req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log(`Ethereum ToDo List App running on port ${PORT}`);
+  console.log(`Ethereum Voting Dapp running on port ${PORT}`);
 });
